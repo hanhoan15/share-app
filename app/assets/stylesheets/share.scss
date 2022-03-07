@@ -1,0 +1,32 @@
+// Place all the styles related to the shares controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.article{
+  h1{
+    width:30px;
+    margin-top:-10px;
+    margin-left:5px;
+    background:white;
+  }
+}
+.fieldset {
+  position: relative;
+  border: 1px solid #ddd;
+  padding: 1rem;
+}
+
+.fieldset h1 {
+  position: absolute;
+  top: 0;
+  font-size: 18px;
+  line-height: 1;
+  margin: -9px 0 0 -0.5rem; /* half of font-size up top */
+  background: #fff;
+  padding: 0 0.5rem;
+}
+
+body {
+  margin: 2rem;
+  font: 100% system-ui;
+}

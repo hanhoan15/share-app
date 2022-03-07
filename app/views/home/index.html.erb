@@ -1,0 +1,53 @@
+<div class="entry">
+  <% @articles.each do |article| %>
+    <div class="article">
+      <div class="col-6 padding-0-50">
+        <iframe height="100%" width="100%" src="<%= article[:url] %>"></iframe>
+      </div>
+      <div class="col-6 padding-0-50">
+        <div class="display-flex">
+          <div class="col-6 ">
+            <p class="title">
+              <%= article[:title] %>
+            </p>
+            <p>
+              <%= t('home.article.share_by') %> <%= article[:user_email] %>
+            </p>
+            <p>
+              <%= fa_icon "thumbs-o-up"%> <%= article[:like] %> <%= fa_icon "thumbs-o-down"%> <%= article[:dislike] %>
+            </p>
+          </div>
+          <div class="col-6 ">
+            <% if @current_user %>
+              <% if article[:voted] %>
+                <% if article[:voted_value] %>
+                  <a href=<%= "#{vote_unvote_path}/#{article[:id]}"%>  data-method="post">
+                    <%= fa_icon "thumbs-up", class: "font-size-100" %>
+                  </a>
+                <% else %>
+                  <a href=<%="#{vote_unvote_path}/#{article[:id]}"%> data-method="post">
+                    <%= fa_icon "thumbs-down", class: "font-size-100" %>
+                  </a>
+                <% end %>
+              <% else %>
+                <a href=<%= "#{vote_thumbs_up_path}/#{article[:id]}"%>  data-method="post">
+                  <%= fa_icon "thumbs-o-up", class: "font-size-50" %>
+                </a>
+
+                <a href=<%="#{vote_thumbs_down_path}/#{article[:id]}"%> data-method="post">
+                  <%= fa_icon "thumbs-o-down", class: "font-size-50" %>
+                </a>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <p>
+          <%= t('home.article.description') %>
+        </p>
+        <p>
+          <%= article[:description] %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>

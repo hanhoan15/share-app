@@ -1,0 +1,37 @@
+<div class="nav-bar">
+  <div class="col-6 left-bar">
+    <%= link_to root_url, class: "black-button" do %>
+      <%= fa_icon "home"%>
+      <%end %>
+    <h1>Funny movies</h1>
+  </div>
+
+  <div class="col-6 right-bar">
+    <% if !@current_user %>
+
+      <%= form_for(@new_user, url: '/users/sign_in') do |f| %>
+        <div class="field">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: t('home.login.email') %>
+        </div>
+
+        <div class="field">
+          <%= f.password_field :password, autocomplete: "current-password", placeholder: t('home.login.password') %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit t('home.login.button.login') %>
+        </div>
+      <% end %>
+    <% end %>
+
+    <% if @current_user %>
+      <p>Welcome <%= @current_user.email %></p>
+      <button type="button">
+        <%= link_to "Share a movies", new_share_path%>
+      </button>
+      <button type="button">
+        <%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
+      </button>
+    <% end %>
+  </div>
+</div>
